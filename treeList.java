@@ -1,7 +1,5 @@
 package tree;
 
-import java.util.ArrayList;
-
 public class treeList {
 
 	class treeNode {
@@ -9,12 +7,7 @@ public class treeList {
 		public int data;
 		public int duplicate;
 	}
-	
-//	public static Integer[] list;
-//	treeList(int num){
-//		list = new Integer[num] ;
-//	}
-	
+
 	public treeNode root;
 	public static int count;
 
@@ -22,19 +15,12 @@ public class treeList {
 		root = null;
 	}
 
-	// makeTreeNode()
-	// setLeft
-	// setRIght
-	// inOrder
-	// BuildbinaryTree
-	// No. of compares (reading and writing the integer)
-
 	public treeNode makeNode(int data) {
 		treeNode curr = new treeNode();
 		curr.data = data;
 		curr.left = null;
 		curr.right = null;
-		curr.duplicate = 0;
+		curr.duplicate = 1;
 		return curr;
 	}
 
@@ -52,22 +38,21 @@ public class treeList {
 			curr.right = makeNode(data);
 	}
 
-	public int buildBinaryTree(Integer [] list) {
-		int turn = 0;	// counts the size of non-null elements in the array
-		
-		while (list[turn]!=null) { // loops through the whole list of integers
+	public int buildBinaryTree(Integer[] list) {
+		int turn = 0; // counts the size of non-null elements in the array
+
+		while (turn < list.length) { // loops through the whole list of integers
 			int num = list[turn];
-			
+
 			count++;
 			if (root == null) {
 				root = makeNode(num);
-			} 
-			else {
+			} else {
 				treeNode current = root;
 				boolean go = true;
-				
+
 				while (go) { // number is compared with single integer from existing tree
-					
+
 					count++;
 					if (num < current.data) {
 						count++;
@@ -76,8 +61,7 @@ public class treeList {
 						else {
 							setLeft(num, current);
 							go = false;
-
-						}
+						}	
 					} else if (num > current.data) {
 						count++;
 						if (current.right != null)
@@ -85,17 +69,17 @@ public class treeList {
 						else {
 							setRight(num, current);
 							go = false;
-
 						}
-
 					} else { // num == current.data
 						count++;
-						current.duplicate = current.duplicate++;
+						int temp = current.duplicate ;
+						current.duplicate = temp+1 ;
 						go = false;
-					}
-				} // Comparision wiht single integer stops here
+					}					
+				} // Comparison with single integer stops here
 			}
 			turn++;
+			//System.out.println(turn);
 		}
 		return turn;
 	}
@@ -105,10 +89,20 @@ public class treeList {
 			inorder(tree.left); // go left
 
 		// when there is no left
-		System.out.println(tree.data);
+		for(int i=1 ; i<=tree.duplicate ; i++) {
+			System.out.println(tree.data);
+		}
 
 		if (tree.right != null)
 			inorder(tree.right); // go right
 
 	}
+
+
 }
+// makeTreeNode()
+// setLeft
+// setRIght
+// inOrder
+// BuildbinaryTree
+// No. of compares (reading and writing the integer)

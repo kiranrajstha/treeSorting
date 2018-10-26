@@ -5,12 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class BuildArray {
-	public static Integer[] list;
-	public static int arrayLength;
+	public  Integer[] list;
+	public  int arrayLength;	// Total number of non-null spaces in the array
 
-	BuildArray(int length) {//throws FileNotFoundException {
-		list = new Integer[length];
-		//array();
+	BuildArray(int length) {
+		list = new Integer[length];	// Initialize the size of the to-be-made matrix
 	}
 
 	public void fillArray() throws FileNotFoundException {
@@ -18,24 +17,18 @@ public class BuildArray {
 		Scanner input = new Scanner(mydoc);
 
 		int i = 0;
-		while (input.hasNext()) {
+		while (input.hasNext()) {	// Fill the 'list' array
 			int num = input.nextInt();
 			list[i] = num;
-			//System.out.println(list[i] + "   " + num);
 			i++;
 		}
 		arrayLength = i;
 	}
 	
-	public static void print() {
+	public void print() {	//Integer [] list , int arrayLength
 		for(int i = 0; i<arrayLength ; i++) {
 			System.out.println(list[i]);
 		}
 	}
 
-//	public static void main(String[] args) throws FileNotFoundException {
-//		BuildArray a = new BuildArray();
-//		a.array();
-//		System.out.println(a.list.length);
-//	}
 }
