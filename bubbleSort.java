@@ -19,6 +19,7 @@ public class bubbleSort {
 
 			swapping = false;
 			for (int i = 0; i < (list.length - 1); i++) {
+				count++;
 				if (list[i] > list[i + 1]) {
 					swapping = true;
 					swap(i, i + 1); // Calls the swap method

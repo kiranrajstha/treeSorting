@@ -9,7 +9,7 @@ public class treeList {
 	}
 
 	public treeNode root;
-	public static int count;
+	public int count = 0 ;
 
 	public void init() {
 		root = null;
@@ -38,7 +38,7 @@ public class treeList {
 			curr.right = makeNode(data);
 	}
 
-	public int buildBinaryTree(Integer[] list) {
+	public void buildBinaryTree(Integer[] list) {
 		int turn = 0; // counts the size of non-null elements in the array
 
 		while (turn < list.length) { // loops through the whole list of integers
@@ -50,28 +50,35 @@ public class treeList {
 			} else {
 				treeNode current = root;
 				boolean go = true;
-
+				
+				count++;
 				while (go) { // number is compared with single integer from existing tree
 
 					count++;
 					if (num < current.data) {
-						count++;
-						if (current.left != null)
+						
+						if (current.left != null) {
 							current = current.left;
+							count++;
+						}
 						else {
 							setLeft(num, current);
 							go = false;
+							count = count + 2;
 						}	
 					} else if (num > current.data) {
-						count++;
-						if (current.right != null)
+						count=count+2;
+						if (current.right != null) {
 							current = current.right;
+							count++ ;
+						}
 						else {
 							setRight(num, current);
 							go = false;
+							count = count + 2;
 						}
 					} else { // num == current.data
-						count++;
+						count = count + 3 ;
 						int temp = current.duplicate ;
 						current.duplicate = temp+1 ;
 						go = false;
@@ -81,7 +88,7 @@ public class treeList {
 			turn++;
 			//System.out.println(turn);
 		}
-		return turn;
+		
 	}
 
 	public void inorder(treeNode tree) {
